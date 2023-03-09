@@ -1,6 +1,7 @@
 package com.bjlngroup.soscamp;
 
 public class Remedios {
+    private int id;
     private int id_cliente;
     private String nome;
     private int miligramas;

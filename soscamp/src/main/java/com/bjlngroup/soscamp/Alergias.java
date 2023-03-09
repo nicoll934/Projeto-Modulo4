@@ -1,6 +1,7 @@
 package com.bjlngroup.soscamp;
 
 public class Alergias {
+    private int id;
     private int id_cliente;
     private String alergia;
 
