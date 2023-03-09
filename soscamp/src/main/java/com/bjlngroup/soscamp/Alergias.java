@@ -9,11 +9,10 @@ import jakarta.persistence.Table;
 public class Alergias {
     @Id
     private int id;
-    private int id_cliente;
+
     private String alergia;
 
-    public Alergias(int id_cliente, String alergia) {
-        this.id_cliente = id_cliente;
+    public Alergias(String alergia) {
         this.alergia = alergia;
     }
 
@@ -23,14 +22,6 @@ public class Alergias {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
     }
 
     public String getAlergia() {

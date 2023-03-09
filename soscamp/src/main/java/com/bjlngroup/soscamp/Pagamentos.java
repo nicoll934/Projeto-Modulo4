@@ -1,19 +1,19 @@
 package com.bjlngroup.soscamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Table(name="Pagamentos")
 @Entity
 public class Pagamentos {
     @Id
     private int id;
-    private int id_cliente;
+
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
+    private Clientes cliente;
     private float preco;
 
-    public Pagamentos(int id_cliente, float preco) {
-        this.id_cliente = id_cliente;
+    public Pagamentos(float preco) {
         this.preco = preco;
     }
 
@@ -25,14 +25,6 @@ public class Pagamentos {
         this.id = id;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
     public float getPreco() {
         return preco;
     }
@@ -40,4 +32,5 @@ public class Pagamentos {
     public void setPreco(float preco) {
         this.preco = preco;
     }
+
 }

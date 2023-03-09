@@ -1,8 +1,9 @@
 package com.bjlngroup.soscamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name="Planos")
 @Entity
@@ -11,6 +12,10 @@ public class Planos {
     private int id;
     private String nome;
     private int duracao;
+
+    @OneToMany
+    @JoinColumn(name = "id_plano")
+    private List<Clientes> campistas = new ArrayList<>();
 
 
     public Planos(String nome, int duracao) {
