@@ -7,10 +7,7 @@ import jakarta.persistence.Table;
 @Table(name="Remedios")
 @Entity
 public class Remedios {
-<<<<<<< HEAD
-=======
     @Id
->>>>>>> 15b33feff58384d4bbea4ba1a0f4442cb197601d
     private int id;
     private int id_cliente;
     private String nome;
