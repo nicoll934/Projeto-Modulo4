@@ -1,8 +1,10 @@
 package com.bjlngroup.soscamp.tables;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 @Entity
+@Table(name = "Clientes")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
