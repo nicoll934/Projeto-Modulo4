@@ -1,7 +1,8 @@
 package com.bjlngroup.soscamp.tables;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Clientes")
@@ -20,6 +21,8 @@ public class Cliente {
     private String endereco;
     private String quarto;
     private String alergias;
+
+//    private List<Pagamento> pagamentos;
 
     public void atualizar(Cliente cliente) {
         this.nome = cliente.getNome();

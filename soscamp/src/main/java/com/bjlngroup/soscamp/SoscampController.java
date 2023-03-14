@@ -1,7 +1,11 @@
 package com.bjlngroup.soscamp;
 
 import com.bjlngroup.soscamp.repositories.ClientesRepository;
+import com.bjlngroup.soscamp.repositories.PagamentosRepository;
+import com.bjlngroup.soscamp.repositories.PlanosRepository;
 import com.bjlngroup.soscamp.tables.Cliente;
+import com.bjlngroup.soscamp.tables.Pagamento;
+import com.bjlngroup.soscamp.tables.Plano;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +20,12 @@ public class SoscampController {
     // Repositorios
     @Autowired
     private ClientesRepository clientesRepository;
+
+    @Autowired
+    private PlanosRepository planosRepository;
+
+    @Autowired
+    private PagamentosRepository pagamentosRepository;
 
     // metodos GET
 
@@ -52,6 +62,36 @@ public class SoscampController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/pagamentos")
+    public Iterable<Pagamento> listarPagamentos() {
+        return pagamentosRepository.findAll();
+    }
+
+    @GetMapping("/pagamentos/{id}")
+    public Pagamento buscarPagamentoPorID(@PathVariable long id) {
+        Optional<Pagamento> pagamentoOptional = pagamentosRepository.findById(id);
+
+        if (pagamentoOptional.isPresent())
+            return pagamentoOptional.get();
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/planos")
+    public Iterable<Plano> listarPlanos() {
+        return planosRepository.findAll();
+    }
+
+    @GetMapping("/planos/{id}")
+    public Plano buscarPlanoPorID(@PathVariable long id) {
+        Optional<Plano> planoOptional = planosRepository.findById(id);
+
+        if (planoOptional.isPresent())
+            return planoOptional.get();
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
     // metodos POST
     @PostMapping("/clientes/signin")
     @ResponseStatus(HttpStatus.CREATED)
@@ -62,9 +102,20 @@ public class SoscampController {
         clientesRepository.save(cliente);
     }
 
+    @PostMapping("/pagamentos/pay")
+    public void inserirPagamento(@RequestBody Pagamento pagamento) {
+        pagamentosRepository.save(pagamento);
+    }
+
+    @PostMapping("/planos/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    private void inserirPlano(@RequestBody Plano plano) {
+        planosRepository.save(plano);
+    }
+
     // metodos PUT
-    @PutMapping("clientes/update/{id}")
-    public void atualizarCliente(@PathVariable long id) {
+    @PutMapping("/clientes/update/{id}")
+    public void atualizarCliente(@PathVariable long id, @RequestBody Cliente cliente) {
         Optional<Cliente> clienteOptional = clientesRepository.findById(id);
 
         if (clienteOptional.isEmpty())
@@ -74,7 +125,34 @@ public class SoscampController {
         String senhaCriptografada = criptografarSenha(clienteEncontrado.getSenha());
         clienteEncontrado.setSenha(senhaCriptografada);
 
+        clienteEncontrado.atualizar(cliente);
         clientesRepository.save(clienteEncontrado);
+    }
+
+    @PutMapping("/pagamentos/update/{id}")
+    public void atualizarPagamento(@PathVariable long id, @RequestBody Pagamento pagamento) {
+        Optional<Pagamento> pagamentoOptional = pagamentosRepository.findById(id);
+
+        if (pagamentoOptional.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        Pagamento pagamentoEncontrado = pagamentoOptional.get();
+        pagamentoEncontrado.atualizar(pagamento);
+
+        pagamentosRepository.save(pagamentoEncontrado);
+    }
+
+    @PutMapping("/planos/update/{id}")
+    public void atualizarPlano(@PathVariable long id, Plano plano) {
+        Optional<Plano> planoOptional = planosRepository.findById(id);
+
+        if (planoOptional.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        Plano planoEncontrado = planoOptional.get();
+        planoEncontrado.atualizar(plano);
+
+        planosRepository.save(planoEncontrado);
     }
 
     // metodos DELETE
@@ -86,6 +164,26 @@ public class SoscampController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         clientesRepository.delete(clienteOptional.get());
+    }
+
+    @DeleteMapping("/pagamentos/delete/{id}")
+    public void excluirPagamento(@PathVariable long id) {
+        Optional<Pagamento> pagamentoOptional = pagamentosRepository.findById(id);
+
+        if (pagamentoOptional.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        pagamentosRepository.delete(pagamentoOptional.get());
+    }
+
+    @DeleteMapping("/planos/delete/{id}")
+    public void excluirPlano(@PathVariable long id) {
+        Optional<Plano> planoOptional = planosRepository.findById(id);
+
+        if (planoOptional.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        planosRepository.delete(planoOptional.get());
     }
 
     // metodos extras
