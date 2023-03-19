@@ -21,4 +21,11 @@ public class Cliente {
     private String telefone;
     private String endereco;
     private String alergias;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Plano plano;
+
+
+
+
 }

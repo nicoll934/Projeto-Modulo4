@@ -14,8 +14,9 @@ public class Pagamento {
     private long id;
 
 //    private Cliente cliente;
-//
-//    private Plano plano;
+ //   private Plano plano;
 
     private String data;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Plano plano;
 }
