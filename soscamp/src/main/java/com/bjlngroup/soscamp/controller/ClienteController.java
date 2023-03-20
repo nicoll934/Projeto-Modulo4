@@ -35,7 +35,7 @@ public class ClienteController {
     // - fim
 
 
-    @GetMapping("/login/{email}/{senha}")
+    @GetMapping("/login")
     public Cliente login(@PathVariable String email, @PathVariable String senha) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

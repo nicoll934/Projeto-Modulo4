@@ -9,14 +9,14 @@ import lombok.Setter;
 @Table(name = "pagamentos")
 public class Pagamento {
     @Id
-    @Column(name = "id_pagamento")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    private Cliente cliente;
- //   private Plano plano;
+    @ManyToOne
+    private Cliente cliente;
 
-    private String data;
     @OneToOne(cascade = CascadeType.ALL)
     private Plano plano;
+
+    private String data;
 }

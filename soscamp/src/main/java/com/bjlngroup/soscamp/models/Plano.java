@@ -1,6 +1,8 @@
 package com.bjlngroup.soscamp.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,14 +11,22 @@ import lombok.Setter;
 @Table(name = "planos")
 public class Plano {
     @Id
-    @Column(name = "plano_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String descricao;
+
+    @NotBlank
     private String localizacao;
+
+    @Min(1)
     private int duracao;
+
+    @Min(0)
     private float preco;
 
     public void atualizar(Plano plano) {
