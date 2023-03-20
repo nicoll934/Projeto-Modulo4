@@ -2,6 +2,8 @@ package com.bjlngroup.soscamp.controller;
 
 import com.bjlngroup.soscamp.models.Cliente;
 import com.bjlngroup.soscamp.repositories.ClientesRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -98,5 +102,24 @@ public class ClienteController {
     public String criptografarSenha(String str) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(str);
+    }
+
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public List<String> tratar(ConstraintViolationException exception) {
+        List<String> erros = new ArrayList<>();
+
+        for(ConstraintViolation<?> violation : exception.getConstraintViolations()) {
+            String erro = String.format(
+                    "%s %s",
+                    violation.getPropertyPath().toString(),
+                    violation.getMessage()
+            );
+
+            erros.add(erro);
+        }
+
+        return erros;
     }
 }
