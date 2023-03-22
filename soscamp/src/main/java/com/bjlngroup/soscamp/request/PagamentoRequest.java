@@ -1,4 +1,4 @@
-package com.bjlngroup.soscamp.models;
+package com.bjlngroup.soscamp.request;
 
 public class PagamentoRequest {
     private long cliente_id;

@@ -2,6 +2,7 @@ package com.bjlngroup.soscamp.controller;
 
 import com.bjlngroup.soscamp.models.Cliente;
 import com.bjlngroup.soscamp.repositories.ClientesRepository;
+import com.bjlngroup.soscamp.request.LoginRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,11 @@ public class ClienteController {
 
 
     @GetMapping("/login")
-    public Cliente login(@PathVariable String email, @PathVariable String senha) {
+    public Cliente login(@RequestBody LoginRequest loginRequest) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String email = loginRequest.getEmail();
+        String senha = loginRequest.getSenha();
 
         for (Cliente cliente : clientesRepository.findAll()) {
             if (cliente.getEmail().equalsIgnoreCase(email) && encoder.matches(senha, cliente.getSenha()))

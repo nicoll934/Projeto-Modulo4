@@ -2,7 +2,7 @@ package com.bjlngroup.soscamp.controller;
 
 import com.bjlngroup.soscamp.models.Cliente;
 import com.bjlngroup.soscamp.models.Pagamento;
-import com.bjlngroup.soscamp.models.PagamentoRequest;
+import com.bjlngroup.soscamp.request.PagamentoRequest;
 import com.bjlngroup.soscamp.models.Plano;
 import com.bjlngroup.soscamp.repositories.ClientesRepository;
 import com.bjlngroup.soscamp.repositories.PagamentosRepository;
