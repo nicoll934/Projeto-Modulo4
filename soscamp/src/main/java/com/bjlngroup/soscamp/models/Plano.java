@@ -23,10 +23,8 @@ public class Plano {
     @NotBlank
     private String localizacao;
 
-    @Min(1)
     private int duracao;
 
-    @Min(0)
     private float preco;
 
     public void atualizar(Plano plano) {

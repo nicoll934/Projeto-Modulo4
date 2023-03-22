@@ -17,13 +17,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClientesRepository clientesRepository;
 
     // - para remover depois
-    @GetMapping
+    @GetMapping("/list-all")
     public Iterable<Cliente> listarTodos() {
         return clientesRepository.findAll();
     }
