@@ -13,9 +13,11 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    private Cliente cliente;
-//
-//    private Plano plano;
+    @OneToOne
+    private Cliente cliente;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "id_plano")
+    private Plano plano;
 
     private String data;
 }
