@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1.0"
+    >
+    <meta 
+        name="description" 
+        content="Um site de acampamento com foco no público jovem que está ingressando no mercado de trabalho, nosso principal objetivo é criar um acampamento onde o jovem possa se divertir e ao mesmo aprender coisas valiosas para seu desenvolvimento"
+    >
+    <meta 
+    name="keywords" 
+    content="acampamento, mercado de trabalho, soft-skills, desenvolvimento"
+    >
+    <meta 
+    name="author" 
+    content="SOSCamp"
+    >
+    <title>SOSCamp - Temporadas</title>
+    <link rel="stylesheet" href="planos.css">
+    <link rel="stylesheet" href="padronizado.css">
+    <link rel="stylesheet" href="responsivo.css">
+</head>
+<body>
+    <div class="container">
+        <button class="hamburguer" tabindex="1" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebarControl" aria-haspopup="true">
+            <div class="line" id="line1"></div>
+            <div class="line" id="line2"></div>
+            <div class="line" id="line3"></div>
+        </button>
+
+        <header class="banner-container">
+            <figure class="banner-medium">
+                <img class="img-slider"
+                        src="https://i0.wp.com/caminhosmelevem.com/wp-content/uploads/2020/11/Socorro-SP-edit-46.jpg?resize=1000%2C665"
+                        alt="piscinas">
+            </figure>
+            
+            <div class="banner-text">
+                <h1>Fazer parte do melhor acampamento</h1>
+                <p>Faça a sua inscrição para uma temporada conosco</p>
+            </div>
+        </header>
+
+        <aside class="sidebar" id="sidebarControl">
+            <nav>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">Home</a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="planos.html" class="menu-link">Planos</a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="login.html" class="menu-link">Entrar</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-padrao">
+            <section id="servicos" class="section-padrao">
+                <div class="wrapper-content">
+                    <header class="header-padrao">
+                        <h2>Planos</h2>
+                    </header>
+	<div class="planos">
+		<div class="plano">
+            <div class="servicos-pessoas flex-card" id="table_body"></div>
+        </main>
+
+        <footer>
+            <p>&copy; Todos os direitos reservados - SOSCamp 2023</p>
+        </footer>
+    </div>
+
+	<script src="script.js"></script>
+    <script src="modal.js"></script>
+    <script src="checkout.js"></script>
+    
+    <script>
+        fetch('http://localhost:8080/planos')
+            .then((res) => res.json())
+            .then((data) => {
+                let tableData = '';
+                data.map((values) => {
+                    tableData += `
+                        <div class="servicos-item-pessoas flex-card-item">
+                            <header>${values.nome}</header>
+                            <div class="space">
+                                <ul>
+                                    <li>${values.duracao} dias no acampamento</li>
+                                    <li>${values.descricao}</li>
+                                    <li>${values.localizacao}</li>
+                                    <li>Certificação</li>
+                                </ul>
+                                <a class="btn-compra" onclick="get_plano_id(${values.id})" href="pagamento.html">R$ ${values.preco}</a>
+                            </div>
+                        </div>
+                    `;
+                });
+                document.getElementById('table_body').innerHTML = tableData;
+            })
+            .catch((err) => console.log(err));
+            
+            
+            function get_plano_id(id) {
+                sessionStorage.setItem('planoID', id);
+            }
+    </script>
+</body>
+</html>

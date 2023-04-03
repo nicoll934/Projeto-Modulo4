@@ -1,0 +1,134 @@
+header.banner-container {
+    position: relative;
+    width: 100%;
+    height: 58vh;
+}
+
+header.banner-container .banner-medium {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+header.banner-container .banner-medium img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .5;
+}
+
+header.banner-container .banner-text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+header.banner-container .banner-text h1 {
+    font-size: 5rem;
+    font-family: var(--font-primary);
+    line-height: 5rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 12px black;
+    margin-bottom: 2rem;
+}
+
+header.banner-container .banner-text p {
+    font-size: 2.5rem;
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 5px black;
+}
+
+section#servicos .flex-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+section#servicos .flex-card .flex-card-item {
+    width: 100%;
+    border: 2px solid black;
+    box-shadow: 0 0 10px var(--black-varient-2);
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.servicos-pessoas .servicos-item-pessoas header {
+    background-color: var(--details-blue-1);
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+section#servicos ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+section#servicos ul li {
+    border-bottom: 2px solid var(--details-brown-3);
+    padding: .5rem;
+}
+
+section#servicos .btn-compra {
+    width: 70%;
+    margin-top: 4rem;
+    padding: 1rem;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: none;
+}
+
+.servicos-pessoas .servicos-item-pessoas a {
+    background-color: var(--details-blue-1);
+}
+
+.servicos-pessoas .servicos-item-pessoas a:hover {
+    background-color: var(--details-blue-2);
+}
+
+section#servicos .space {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.servicos-empresas .servicos-item-empresas header {
+    background-color: var(--details-green-3);
+    color: var(--secondary-color);
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.servicos-empresas .servicos-item-empresas a {
+    background-color: var(--details-green-3);
+}
+
+.servicos-empresas .servicos-item-empresas a:hover {
+    background-color: var(--details-green-1);
+}

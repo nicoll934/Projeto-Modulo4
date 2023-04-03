@@ -1,0 +1,117 @@
+header.banner-container {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    padding-bottom: 40px;
+}
+
+header.banner-container .banner-medium {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+header.banner-container .banner-medium img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .5;
+}
+
+header.banner-container .banner-text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+header.banner-container .banner-text h1 {
+    font-size: 5rem;
+    font-family: var(--font-primary);
+    line-height: 5rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 12px black;
+    margin-bottom: 2rem;
+}
+
+header.banner-container .banner-text p {
+    font-size: 2.5rem;
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 5px black;
+}
+.form-box{
+    font-family: var(--font-tertiary) ;
+    padding: 30px 40px;
+    width: 50%;
+    border: 2px solid #616161;
+    border-radius: 20px;
+    margin-inline: auto;
+}
+.form-box h2{
+    font-size: 30px;
+}
+.form-box p{
+    font-weight: bold;
+    color: #3D3D3D;
+}
+.form-box p a{
+    color: var(--details-green-2);
+    text-decoration: none;
+}
+.form-box form{
+    margin: 20px 0;
+}
+form .input-group{
+    margin-bottom: 15px;
+    align-items: center;
+}
+form .input-group label{
+    color: #3D3D3D;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+form .input-group input{
+    width: 100%;
+    height: 47px;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid black;
+    padding: 15px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+}
+form .input-group input:focus{
+    border-color: var(--details-green-3);
+}
+form .input-group button{
+    width: 100%;
+    height: 47px;
+    background: var(--details-green-1);
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+form .input-group button a {
+    text-decoration: none;
+    color: rgb(11, 11, 11);
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+.w50{
+    width: 50%;
+    float: left;
+    padding-right: 15px;
+}

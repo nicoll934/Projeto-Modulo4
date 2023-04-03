@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/planos")
 public class PlanoController {

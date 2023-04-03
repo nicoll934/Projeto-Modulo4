@@ -2,7 +2,6 @@ package com.bjlngroup.soscamp.controller;
 
 import com.bjlngroup.soscamp.models.Cliente;
 import com.bjlngroup.soscamp.repositories.ClientesRepository;
-import com.bjlngroup.soscamp.request.LoginRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -39,13 +39,9 @@ public class ClienteController {
     }
     // - fim
 
-
-    @GetMapping("/login")
-    public Cliente login(@RequestBody LoginRequest loginRequest) {
+    @GetMapping("/login/{email}/{senha}")
+    public Cliente login(@PathVariable String email, @PathVariable String senha) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        String email = loginRequest.getEmail();
-        String senha = loginRequest.getSenha();
 
         for (Cliente cliente : clientesRepository.findAll()) {
             if (cliente.getEmail().equalsIgnoreCase(email) && encoder.matches(senha, cliente.getSenha()))
@@ -60,11 +56,14 @@ public class ClienteController {
 
     @PostMapping("/signin")
     public ResponseEntity<Cliente> inserirCliente(@RequestBody Cliente cliente) {
-        // Criptografa a senha antes de colocar o usuario no banco
-        String senhaCriptografada = criptografarSenha(cliente.getSenha());
-        cliente.setSenha(senhaCriptografada);
+        if (!cliente.getSenha().isEmpty()) {
+            // Criptografa a senha antes de colocar o usuario no banco
+            String senhaCriptografada = criptografarSenha(cliente.getSenha());
+            cliente.setSenha(senhaCriptografada);
 
-        return new ResponseEntity<>(clientesRepository.save(cliente), HttpStatus.CREATED);
+            return new ResponseEntity<>(clientesRepository.save(cliente), HttpStatus.CREATED);
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/update/{id}")

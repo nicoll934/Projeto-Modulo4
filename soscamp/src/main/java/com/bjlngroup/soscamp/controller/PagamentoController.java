@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/pagamentos")
 public class PagamentoController {
