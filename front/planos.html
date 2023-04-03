@@ -18,7 +18,7 @@
     name="author" 
     content="SOSCamp"
     >
-    <title>SOSCamp - Temporadas</title>
+    <title>SOSCamp - Planos</title>
     <link rel="stylesheet" href="planos.css">
     <link rel="stylesheet" href="padronizado.css">
     <link rel="stylesheet" href="responsivo.css">
@@ -83,8 +83,6 @@
     <script src="checkout.js"></script>
     
     <script>
-        console.log(sessionStorage.getItem('clienteID'));
-        
         fetch('http://localhost:8080/planos')
             .then((res) => res.json())
             .then((data) => {
@@ -109,6 +107,9 @@
             })
             .catch((err) => console.log(err));
             
+            if (document.getElementById('table_body').innerHTML.trim() === '') {
+                document.getElementById('table_body').innerHTML = '<div>Não há nenhum plano disponivel no momento.<div>'
+            }
             
             function get_plano_id(id) {
                 if (sessionStorage.getItem('clienteID') == null) {
