@@ -3,7 +3,7 @@
 ## Projeto Final Módulo 4
 
 ### Objetivo
-Criar uma RESTful Api para o projeto de conclusão do curso Start Tech de Back-end utilizando também front-end com o site de Acampamento Soft skill de [WellCamp](https://github.com/Ericodesenvolvedor/WellCamp).
+Criar uma RESTful Api para o projeto de conclusão do curso Start Tech: Universidade TOTVS & Ada de Back-end utilizando também front-end com o site de Acampamento Soft skill de [WellCamp](https://github.com/Ericodesenvolvedor/WellCamp).
 
 ### Funcionalidades
 Fazer cadastro no site SoSCamp, compras dos nossos serviços de temporadas no acampamento.
