@@ -199,22 +199,18 @@
                     if (sessionStorage.getItem('clienteID') <= 0 || sessionStorage.getItem('clienteID') == null) {
                         sessionStorage.removeItem('clienteID');
                     }
-                    sessionStorage.setItem('clienteID', data.id);
-                    location.href = 'http://localhost:5500/SOSCAMPFRONT/planos.html'
+                    setClientID(data);
                 }).catch((err) => console.error(err));
             }
-            else if (senha1 != senha2) {
-                alert('As senhas não são iguais');
-            }
-            else if (email === '')  {
-                alert('O email não pode ficar vazio');
-            }
-            else if (senha1 === '' || senha2 === '') {
-                alert('As senhas não podem ficar em branco');
-            }
-            else if (!email_pass) {
-                alert('Email já registrado');
-            }
+            else if (senha1 != senha2) alert('As senhas não são iguais');
+            else if (email === '')  alert('O email não pode ficar vazio');
+            else if (senha1 === '' || senha2 === '') alert('As senhas não podem ficar em branco');
+            else if (!email_pass) alert('Email já registrado');
+        }
+        
+        async function setClientID(data) {
+            await sessionStorage.setItem('clienteID', data.id);
+            location.href = 'http://localhost:5500/SOSCAMPFRONT/planos.html';
         }
     </script>
 </body>

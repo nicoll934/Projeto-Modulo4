@@ -50,7 +50,7 @@ public class PlanoController {
         planosRepository.save(planoEncontrado);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void excluirPlano(@PathVariable long id) {
         Optional<Plano> planoOptional = planosRepository.findById(id);
 

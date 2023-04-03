@@ -61,7 +61,7 @@ public class PagamentoController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void excluirPagamento(@PathVariable long id) {
         Optional<Pagamento> pagamentoOptional = pagamentosRepository.findById(id);
 

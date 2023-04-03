@@ -92,7 +92,7 @@ public class ClienteController {
         clientesRepository.save(clienteEncontrado);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void excluirCliente(@PathVariable long id) {
         Optional<Cliente> clienteOptional = clientesRepository.findById(id);
 

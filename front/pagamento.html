@@ -140,10 +140,9 @@
             }).then((res) => res.json())
             .then((data) => {
                 alert('Pagamento concluído com sucesso');
-                console.log(data)
+                location.href = 'http://localhost:5500/SOSCAMPFRONT/planos.html'
             }).catch((err) => console.error(err));
         }
-        
     </script>
 </body>
 </html>

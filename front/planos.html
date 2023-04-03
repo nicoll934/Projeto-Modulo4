@@ -83,6 +83,8 @@
     <script src="checkout.js"></script>
     
     <script>
+        console.log(sessionStorage.getItem('clienteID'));
+        
         fetch('http://localhost:8080/planos')
             .then((res) => res.json())
             .then((data) => {
@@ -98,7 +100,7 @@
                                     <li>${values.localizacao}</li>
                                     <li>Certificação</li>
                                 </ul>
-                                <a class="btn-compra" onclick="get_plano_id(${values.id})" href="pagamento.html">R$ ${values.preco}</a>
+                                <a class="btn-compra" onclick="get_plano_id(${values.id})">R$ ${values.preco}</a>
                             </div>
                         </div>
                     `;
@@ -109,7 +111,13 @@
             
             
             function get_plano_id(id) {
-                sessionStorage.setItem('planoID', id);
+                if (sessionStorage.getItem('clienteID') == null) {
+                    location.href = 'http://localhost:5500/SOSCAMPFRONT/login.html';
+                }
+                else {
+                    sessionStorage.setItem('planoID', id);
+                    location.href = 'pagamento.html'
+                }
             }
     </script>
 </body>
